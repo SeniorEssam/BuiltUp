@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>V Smart Solutions</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0d47a1;
+            --secondary: #0a192f;
+            --accent: #1565c0;
+            --light: #f8fafc;
+            --border: #dbe2ea;
+            --text: #1e293b;
+            --muted: #64748b;
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #e5e7eb;
+            color: var(--text);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        .page {
+
+            width: 100%;
+            max-width: 210mm;
+            min-height: 297mm;
+
+            margin: 20px auto;
+            padding: 20mm;
+
+            background: white;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            position: relative;
+
+            page-break-after: always;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        .page-content {
+            flex: 1;
+        }
+
+        .footer {
+
+            text-align: center;
+
+            font-size: 13px;
+
+            color: #94a3b8;
+
+            margin-top: 30px;
+
+        }
+
+        .cover-page {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            height: 100%;
+
+            flex-direction: column;
+
+        }
+
+        .logo {
+
+            width: min(100%, 320px);
+
+            height: auto;
+
+            margin-bottom: 25px;
+
+        }
+
+        .company-name {
+
+            font-size: 48px;
+
+            font-weight: 800;
+
+            color: var(--secondary);
+
+            margin-bottom: 10px;
+
+        }
+
+        .tagline {
+
+            font-size: 22px;
+
+            color: var(--accent);
+
+            font-weight: 600;
+
+        }
+
+        .section-title {
+
+            font-size: 32px;
+
+            color: var(--primary);
+
+            font-weight: 800;
+
+            margin-bottom: 30px;
+
+            border-right: 6px solid var(--primary);
+
+            padding-right: 14px;
+
+        }
+
+        .paragraph {
+
+            font-size: 18px;
+
+            line-height: 2;
+
+            color: var(--text);
+
+            margin-bottom: 20px;
+
+        }
+
+        .services-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 20px;
+
+        }
+
+        .service-card {
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            padding: 24px;
+
+            background: var(--light);
+
+        }
+
+        .service-card h3 {
+
+            color: var(--primary);
+
+            font-size: 24px;
+
+            margin-bottom: 18px;
+
+            text-align: center;
+
+        }
+
+        .service-card ul {
+            list-style: none;
+        }
+
+        .service-card li {
+
+            margin-bottom: 12px;
+
+            color: var(--muted);
+
+            position: relative;
+
+            padding-right: 16px;
+
+        }
+
+        .service-card li::before {
+
+            content: '•';
+
+            position: absolute;
+
+            right: 0;
+
+        }
+
+        .features-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 18px;
+
+        }
+
+        .feature {
+
+            border: 1px solid var(--border);
+
+            background: var(--light);
+
+            padding: 20px;
+
+            border-radius: 14px;
+
+            text-align: center;
+
+            font-weight: 600;
+
+            font-size: 18px;
+
+        }
+
+        .projects-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 24px;
+
+        }
+
+        .project-card {
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            background: white;
+
+        }
+
+        .project-image {
+
+            height: 230px;
+
+            background: #cbd5e1;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            color: #64748b;
+
+            font-size: 22px;
+
+            font-weight: 700;
+
+        }
+
+        .project-content {
+            padding: 22px;
+        }
+
+        .project-title {
+
+            color: var(--primary);
+
+            font-size: 30px;
+
+            margin-bottom: 12px;
+
+            font-weight: 800;
+
+        }
+
+        .contact-box {
+
+            background: linear-gradient(135deg, #0a192f, #0d47a1);
+
+            color: white;
+
+            border-radius: 20px;
+
+            padding: 35px;
+
+        }
+
+        .contact-item {
+
+            font-size: 20px;
+
+            margin-bottom: 18px;
+
+            word-break: break-word;
+
+        }
+
+        .ltr {
+
+            direction: ltr;
+
+            text-align: left;
+
+        }
+
+        /* ========================= */
+        /* TABLET */
+        /* ========================= */
+
+        @media screen and (max-width: 992px) {
+
+            .page {
+
+                padding: 40px 28px;
+
+                min-height: auto;
+
+            }
+
+            .services-grid,
+            .features-grid,
+            .projects-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .company-name {
+                font-size: 36px;
+            }
+
+            .tagline {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .paragraph {
+
+                font-size: 16px;
+
+                line-height: 1.9;
+
+            }
+
+            .service-card h3 {
+                font-size: 22px;
+            }
+
+            .project-title {
+                font-size: 24px;
+            }
+
+        }
+
+        /* ========================= */
+        /* MOBILE */
+        /* ========================= */
+
+        @media screen and (max-width: 576px) {
+
+            body {
+                background: #f1f5f9;
+            }
+
+            .page {
+
+                margin: 0;
+
+                padding: 24px 18px;
+
+                border-radius: 0;
+
+                box-shadow: none;
+
+            }
+
+            .company-name {
+                font-size: 28px;
+            }
+
+            .tagline {
+                font-size: 16px;
+            }
+
+            .section-title {
+
+                font-size: 24px;
+
+                margin-bottom: 20px;
+
+            }
+
+            .paragraph {
+                font-size: 15px;
+            }
+
+            .feature {
+
+                font-size: 15px;
+
+                padding: 16px;
+
+            }
+
+            .contact-item {
+                font-size: 16px;
+            }
+
+            .project-image {
+
+                height: 180px;
+
+                font-size: 18px;
+
+            }
+
+        }
+
+        /* ========================= */
+        /* PRINT */
+        /* ========================= */
+
+        @media print {
+
+            body {
+                background: white;
+            }
+
+            .page {
+
+                width: 210mm;
+
+                min-height: 297mm;
+
+                margin: 0;
+
+                padding: 20mm;
+
+                box-shadow: none;
+
+                border-radius: 0;
+
+                page-break-after: always;
+
+            }
+
+            .page:last-child {
+                page-break-after: auto;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- COVER PAGE -->
+
+    <section class="page">
+
+        <div class="page-content">
+
+            <div class="cover-page">
+
+                <img src="https://aliensverse.runasp.net/uploads/WhatsApp_Image_2026-05-12_at_12.03.25_AM-removebg-preview.png" class="logo">
+
+                <h1 class="company-name ltr">
+                    V SMART SOLUTIONS
+                </h1>
+
+                <p class="tagline">
+                    Smart Business & Digital Solutions
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+            V Smart Solutions © 2026
+        </div>
+
+    </section>
+
+    <!-- ABOUT US -->
+
+    <section class="page">
+
+        <div class="page-content">
+
+            <h2 class="section-title">
+                من نحن
+            </h2>
+
+            <p class="paragraph">
+                V Smart Solutions هي شركة متخصصة في تقديم الحلول التقنية والرقمية المتكاملة للشركات والمشروعات التجارية.
+            </p>
+
+            <p class="paragraph">
+                نحن نساعد الشركات على بناء وتشغيل بيئة عمل احترافية من خلال توفير خدمات تقنية وتنفيذية متكاملة تشمل تطوير
+                المواقع الإلكترونية، الأنظمة الذكية، البنية التحتية التقنية، وتجهيزات الأعمال الحديثة.
+            </p>
+
+            <p class="paragraph">
+                هدفنا هو توفير تجربة تشغيل متكاملة للعميل بداية من الفكرة وحتى التشغيل الفعلي للمشروع بأعلى جودة ممكنة.
+            </p>
+
+            <br><br>
+
+            <h2 class="section-title">
+                رؤيتنا
+            </h2>
+
+            <p class="paragraph">
+                أن نكون من الشركات الرائدة في تقديم الحلول الذكية والتقنية المتكاملة للشركات في السوق المصري والعربي.
+            </p>
+
+            <br><br>
+
+            <h2 class="section-title">
+                رسالتنا
+            </h2>
+
+            <p class="paragraph">
+                توفير حلول تقنية وتنفيذية تساعد الشركات على النمو والعمل بشكل احترافي بدون تعقيدات تقنية أو تشغيلية.
+            </p>
+
+        </div>
+
+        <div class="footer">
+            About Us
+        </div>
+
+    </section>
+
+    <!-- SERVICES -->
+
+    <section class="page">
+
+        <div class="page-content">
+
+            <h2 class="section-title">
+                خدماتنا
+            </h2>
+
+            <div class="services-grid">
+
+                <div class="service-card">
+
+                    <h3>Web Development</h3>
+
+                    <ul>
+                        <li>Company Websites</li>
+                        <li>E-Commerce Stores</li>
+                        <li>Dashboards</li>
+                        <li>Portfolio Websites</li>
+                        <li>SEO Optimization</li>
+                    </ul>
+
+                </div>
+
+                <div class="service-card">
+
+                    <h3>Smart & IT Solutions</h3>
+
+                    <ul>
+                        <li>CCTV Systems</li>
+                        <li>Networks & Infrastructure</li>
+                        <li>Sound Systems</li>
+                        <li>Smart Office Setup</li>
+                        <li>Cable Management</li>
+                    </ul>
+
+                </div>
+
+                <div class="service-card">
+
+                    <h3>Interior & Setup</h3>
+
+                    <ul>
+                        <li>Office Finishing</li>
+                        <li>Restaurants Setup</li>
+                        <li>Commercial Decoration</li>
+                        <li>Workspace Preparation</li>
+                    </ul>
+
+                </div>
+
+                <div class="service-card">
+
+                    <h3>Digital Marketing</h3>
+
+                    <ul>
+                        <li>Social Media Management</li>
+                        <li>Advertising Campaigns</li>
+                        <li>Reels & Videos</li>
+                        <li>Content Creation</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+            Services
+        </div>
+
+    </section>
+
+    <!-- WHY US -->
+
+    <section class="page">
+
+        <div class="page-content">
+
+            <h2 class="section-title">
+                لماذا نحن؟
+            </h2>
+
+            <div class="features-grid">
+
+                <div class="feature">
+                    تنفيذ متكامل من البداية للنهاية
+                </div>
+
+                <div class="feature">
+                    دعم فني حقيقي
+                </div>
+
+                <div class="feature">
+                    فريق يجمع بين التقنية والتنفيذ والتسويق
+                </div>
+
+                <div class="feature">
+                    سرعة في التنفيذ
+                </div>
+
+                <div class="feature">
+                    حلول قابلة للتطوير
+                </div>
+
+                <div class="feature">
+                    تصميمات عصرية
+                </div>
+
+                <div class="feature">
+                    متابعة مستمرة
+                </div>
+
+                <div class="feature">
+                    توفير الوقت والمجهود على العميل
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+            Why Choose Us
+        </div>
+
+    </section>
+
+    <!-- PORTFOLIO -->
+
+    <section class="page">
+
+        <div class="page-content">
+
+            <h2 class="section-title">
+                سابقة الأعمال
+            </h2>
+
+            <div class="projects-grid">
+
+                <div class="project-card">
+
+                    <div class="project-image">
+                        ضع صورة المشروع هنا
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3 class="project-title">
+                            اسم المشروع
+                        </h3>
+
+                        <p class="paragraph">
+                            وصف مختصر للمشروع والخدمات المقدمة.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="project-card">
+
+                    <div class="project-image">
+                        ضع صورة المشروع هنا
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3 class="project-title">
+                            اسم المشروع
+                        </h3>
+
+                        <p class="paragraph">
+                            وصف مختصر للمشروع والخدمات المقدمة.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+            Portfolio
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section class="page">
+
+        <div class="page-content">
+
+            <h2 class="section-title">
+                تواصل معنا
+            </h2>
+
+            <div class="contact-box">
+
+                <div class="contact-item">
+                    🌐 Website: [ ضع رابط الموقع هنا ]
+                </div>
+
+                <div class="contact-item">
+                    📱 WhatsApp: [ ضع رقم الواتساب هنا ]
+                </div>
+
+                <div class="contact-item">
+                    📷 Instagram: [ ضع رابط الإنستجرام هنا ]
+                </div>
+
+                <div class="contact-item">
+                    📘 Facebook: [ ضع رابط الفيسبوك هنا ]
+                </div>
+
+                <div class="contact-item">
+                    ✉️ Email: [ ضع البريد الإلكتروني هنا ]
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+            Contact Information
+        </div>
+
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>V Smart Solutions - Business Proposal</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #0d47a1;
+        --secondary: #0a192f;
+        --accent: #1565c0;
+        --light: #f8fafc;
+        --border: #dbe2ea;
+        --text: #1e293b;
+        --muted: #64748b;
+      }
+
+      /* =========================
+   PAGE SETUP
+========================= */
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #e5e7eb;
+      }
+
+      body {
+        font-family: "Cairo", Tahoma, Arial, sans-serif;
+
+        color: var(--text);
+
+        line-height: 1.8;
+
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .container {
+        width: 100%;
+      }
+
+      /* =========================
+   PAGE
+========================= */
+
+      .page {
+        width: 210mm;
+
+        height: 297mm;
+
+        background: white;
+
+        margin: 20px auto;
+
+        padding: 18mm 16mm 30mm;
+
+        position: relative;
+
+        overflow: hidden;
+
+        page-break-after: always;
+        break-after: page;
+
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .page:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+
+      .page-content {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* =========================
+   FOOTER
+========================= */
+
+      .footer {
+        position: absolute;
+
+        bottom: 8mm;
+
+        left: 0;
+        right: 0;
+
+        text-align: center;
+
+        font-size: 13px;
+
+        color: #94a3b8;
+      }
+
+      /* =========================
+   COVER PAGE
+========================= */
+
+      .cover-page {
+        height: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: center;
+
+        text-align: center;
+      }
+
+      .logo {
+        width: 220px;
+
+        margin-bottom: 28px;
+
+        object-fit: contain;
+      }
+
+      .proposal-badge {
+        background: var(--primary);
+
+        color: white;
+
+        padding: 10px 28px;
+
+        border-radius: 999px;
+
+        font-size: 14px;
+
+        font-weight: 700;
+
+        margin-bottom: 30px;
+      }
+
+      .company-name {
+        font-size: 52px;
+
+        font-weight: 800;
+
+        color: var(--secondary);
+
+        margin-bottom: 10px;
+
+        letter-spacing: 1px;
+      }
+
+      .tagline {
+        font-size: 24px;
+
+        color: var(--accent);
+
+        margin-bottom: 60px;
+      }
+
+      /* =========================
+   INFO CARDS
+========================= */
+
+      .proposal-info {
+        width: 100%;
+
+        max-width: 850px;
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 20px;
+      }
+
+      .info-card {
+        background: var(--light);
+
+        border: 1px solid var(--border);
+
+        border-radius: 18px;
+
+        padding: 24px;
+      }
+
+      .info-label {
+        font-size: 14px;
+
+        color: var(--muted);
+
+        margin-bottom: 10px;
+      }
+
+      .info-value {
+        font-size: 22px;
+
+        font-weight: 700;
+
+        color: var(--secondary);
+      }
+
+      /* =========================
+   TITLES
+========================= */
+
+      .section-title {
+        font-size: 34px;
+
+        color: var(--primary);
+
+        font-weight: 800;
+
+        margin-bottom: 30px;
+
+        border-right: 6px solid var(--primary);
+
+        padding-right: 16px;
+      }
+
+      /* =========================
+   TEXT
+========================= */
+
+      .paragraph {
+        font-size: 18px;
+
+        color: var(--text);
+
+        margin-bottom: 22px;
+      }
+
+      /* =========================
+   GRID
+========================= */
+
+      .grid-2 {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 18px;
+
+        align-items: start;
+      }
+
+      /* =========================
+   CARD
+========================= */
+
+      .card {
+        background: var(--light);
+
+        border: 1px solid var(--border);
+
+        border-radius: 18px;
+
+        padding: 22px;
+
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .card h3 {
+        color: var(--primary);
+
+        margin-bottom: 16px;
+
+        font-size: 22px;
+
+        font-weight: 700;
+      }
+
+      .card p {
+        color: var(--muted);
+
+        font-size: 17px;
+      }
+
+      .card ul {
+        list-style: none;
+
+        padding: 0;
+
+        margin: 0;
+      }
+
+      .card li {
+        margin-bottom: 12px;
+
+        position: relative;
+
+        padding-right: 18px;
+
+        color: var(--muted);
+
+        font-size: 16px;
+      }
+
+      .card li::before {
+        content: "•";
+
+        position: absolute;
+
+        right: 0;
+
+        color: var(--primary);
+
+        font-weight: bold;
+      }
+
+      /* =========================
+   FEATURES
+========================= */
+
+      .features-grid {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 18px;
+      }
+
+      .feature {
+        background: var(--light);
+
+        border: 1px solid var(--border);
+
+        padding: 18px;
+
+        border-radius: 16px;
+
+        text-align: center;
+
+        font-weight: 700;
+
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* =========================
+   TIMELINE
+========================= */
+
+      .timeline {
+        border-right: 3px solid var(--primary);
+
+        padding-right: 22px;
+      }
+
+      .timeline-item {
+        margin-bottom: 28px;
+
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .timeline-item h3 {
+        color: var(--primary);
+
+        margin-bottom: 10px;
+
+        font-size: 22px;
+      }
+
+      .timeline-item p {
+        color: var(--muted);
+
+        font-size: 17px;
+      }
+
+      /* =========================
+   TABLE
+========================= */
+
+      .pricing-table {
+        width: 100%;
+
+        border-collapse: collapse;
+
+        border-radius: 16px;
+
+        overflow: hidden;
+
+        page-break-inside: auto;
+      }
+
+      .pricing-table th {
+        background: var(--primary);
+
+        color: white;
+
+        padding: 16px;
+
+        text-align: center;
+
+        font-size: 16px;
+      }
+
+      .pricing-table td {
+        padding: 16px;
+
+        border: 1px solid var(--border);
+
+        text-align: center;
+
+        font-size: 15px;
+      }
+
+      .pricing-table tr:nth-child(even) {
+        background: #f8fafc;
+      }
+
+      .pricing-table tr {
+        page-break-inside: avoid;
+      }
+
+      /* =========================
+   TERMS
+========================= */
+
+      .terms {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 16px;
+      }
+
+      .term {
+        background: var(--light);
+
+        border: 1px solid var(--border);
+
+        border-radius: 14px;
+
+        padding: 18px;
+
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* =========================
+   CONTACT
+========================= */
+
+      .contact-box {
+        background: linear-gradient(135deg, #0a192f, #0d47a1);
+
+        padding: 40px;
+
+        border-radius: 24px;
+
+        color: white;
+
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .contact-item {
+        margin-bottom: 18px;
+
+        font-size: 18px;
+      }
+
+      /* =========================
+   UTILITIES
+========================= */
+
+      .ltr {
+        direction: ltr;
+        text-align: left;
+      }
+
+      /* =========================
+   RESPONSIVE
+========================= */
+
+      @media (max-width: 992px) {
+        body {
+          background: white;
+        }
+
+        .page {
+          width: 100%;
+
+          height: auto;
+
+          min-height: auto;
+
+          margin: 0;
+
+          padding: 30px 20px;
+
+          box-shadow: none;
+        }
+
+        .proposal-info,
+        .grid-2,
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .company-name {
+          font-size: 36px;
+        }
+
+        .tagline {
+          font-size: 20px;
+        }
+
+        .section-title {
+          font-size: 28px;
+        }
+
+        .info-value {
+          font-size: 18px;
+        }
+
+        .logo {
+          width: 170px;
+        }
+
+        .contact-box {
+          padding: 25px;
+        }
+      }
+
+      /* =========================
+   PRINT FIXES
+========================= */
+
+      @media print {
+        html,
+        body {
+          width: 210mm;
+
+          background: white;
+
+          margin: 0;
+
+          padding: 0;
+        }
+
+        body {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        .container {
+          width: 100%;
+        }
+
+        .page {
+          width: 210mm;
+
+          height: 297mm;
+
+          margin: 0;
+
+          padding: 18mm 16mm 30mm;
+
+          background: white;
+
+          box-shadow: none;
+
+          overflow: hidden;
+
+          page-break-after: always;
+          break-after: page;
+        }
+
+        .page:last-child {
+          page-break-after: auto;
+          break-after: auto;
+        }
+
+        /* IMPORTANT */
+
+        .grid-2,
+        .features-grid,
+        .proposal-info {
+          display: block;
+        }
+
+        .card,
+        .feature,
+        .info-card,
+        .term,
+        .timeline-item,
+        .contact-box {
+          width: 100%;
+
+          margin-bottom: 18px;
+
+          break-inside: avoid-page;
+          page-break-inside: avoid;
+        }
+
+        .pricing-table {
+          page-break-inside: auto;
+        }
+
+        .pricing-table tr {
+          page-break-inside: avoid;
+        }
+
+        .footer {
+          position: absolute;
+
+          bottom: 8mm;
+
+          left: 0;
+          right: 0;
+        }
+
+        .cover-page {
+          height: 100%;
+        }
+
+        img {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- COVER -->
+
+      <section class="page proposed-page">
+        <div class="page-content">
+          <div class="cover-page">
+            <img
+              src="https://aliensverse.runasp.net/uploads/WhatsApp_Image_2026-05-12_at_12.03.25_AM-removebg-preview.png"
+              class="logo"
+            />
+
+            <div class="proposal-badge">BUSINESS PROPOSAL</div>
+
+            <h1 class="company-name ltr">V SMART SOLUTIONS</h1>
+
+            <p class="tagline">Smart Business & Digital Solutions</p>
+
+            <div class="proposal-info">
+              <div class="info-card">
+                <div class="info-label">Client Name</div>
+                <div class="info-value">Beauty Makeup Store</div>
+              </div>
+
+              <div class="info-card">
+                <div class="info-label">Project Name</div>
+                <div class="info-value">Full Business Setup</div>
+              </div>
+
+              <div class="info-card">
+                <div class="info-label">Proposal Date</div>
+                <div class="info-value">10 May 2026</div>
+              </div>
+
+              <div class="info-card">
+                <div class="info-label">Prepared By</div>
+                <div class="info-value">V Smart Solutions</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">V Smart Solutions © 2026</div>
+      </section>
+
+      <!-- INTRODUCTION -->
+
+      <section class="page proposed-page">
+        <div class="page-content">
+          <h2 class="section-title">مقدمة</h2>
+
+          <p class="paragraph">
+            يسعدنا في V Smart Solutions تقديم هذا العرض الخاص بمشروع تجهيز
+            وتشغيل محل مستحضرات التجميل الخاص بكم بهدف توفير تجربة تشغيل متكاملة
+            وحديثة تساعد على إطلاق المشروع بشكل احترافي بداية من التشطيب وحتى
+            التشغيل والتسويق.
+          </p>
+
+          <p class="paragraph">
+            نهدف إلى توفير جميع الخدمات المطلوبة للمشروع داخل جهة واحدة بدون
+            الحاجة للتعامل مع أكثر من شركة أو فريق منفصل.
+          </p>
+        </div>
+
+        <div class="footer">Introduction</div>
+      </section>
+
+      <!-- CLIENT REQUIREMENTS -->
+
+      <section class="page proposed-page">
+        <div class="page-content">
+          <h2 class="section-title">متطلبات العميل</h2>
+
+          <div class="grid-2">
+            <div class="card">
+              <h3>التشطيب والديكور</h3>
+
+              <p>تنفيذ أعمال التشطيب والديكور وتجهيز الهوية البصرية للمحل.</p>
+            </div>
+
+            <div class="card">
+              <h3>الأنظمة التقنية</h3>
+
+              <p>تجهيز أنظمة الشبكات والكاميرات والكاشير والأنظمة الذكية.</p>
+            </div>
+
+            <div class="card">
+              <h3>الموقع الإلكتروني</h3>
+
+              <p>تصميم موقع ومتجر إلكتروني احترافي لإدارة المبيعات.</p>
+            </div>
+
+            <div class="card">
+              <h3>التسويق</h3>
+
+              <p>إدارة السوشيال ميديا والإعلانات والحملات التسويقية.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">Client Requirements</div>
+      </section>
+
+      <!-- PROPOSED SOLUTION -->
+
+      <section class="page proposed-page">
+        <div class="page-content">
+          <h2 class="section-title">الحلول المقترحة</h2>
+
+          <div class="grid-2">
+            <div class="card">
+              <h3>Interior & Finishing</h3>
+
+              <ul>
+                <li>تشطيب المحل بالكامل</li>
+                <li>تنفيذ الديكورات</li>
+                <li>تجهيز الإضاءة</li>
+                <li>تصميم الهوية الداخلية</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>Smart & IT Systems</h3>
+
+              <ul>
+                <li>كاميرات مراقبة</li>
+                <li>شبكات وإنترنت</li>
+                <li>أنظمة صوت</li>
+                <li>أجهزة كاشير</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>Website & E-Commerce</h3>
+
+              <ul>
+                <li>تصميم موقع احترافي</li>
+                <li>متجر إلكتروني</li>
+                <li>لوحة تحكم</li>
+                <li>SEO Optimization</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>Marketing & Branding</h3>
+
+              <ul>
+                <li>إدارة السوشيال ميديا</li>
+                <li>تصميم المحتوى</li>
+                <li>الحملات الإعلانية</li>
+                <li>تصوير الفيديوهات</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">Proposed Solution</div>
+      </section>
+
+      <!-- SCOPE OF WORK -->
+
+      <section class="page proposed-page">
+        <div class="page-content">
+          <h2 class="section-title">نطاق العمل</h2>
+
+          <div class="features-grid">
+            <div class="feature">تشطيب كامل للمحل</div>
+
+            <div class="feature">تركيب كاميرات وأنظمة ذكية</div>
+
+            <div class="feature">تجهيز الكاشير والشبكات</div>
+
+            <div class="feature">تصميم موقع ومتجر إلكتروني</div>
+
+            <div class="feature">إدارة السوشيال ميديا</div>
+
+            <div class="feature">تصميم المحتوى الإعلاني</div>
+
+            <div class="feature">دعم فني وصيانة</div>
+
+            <div class="feature">متابعة وتشغيل المشروع</div>
+          </div>
+        </div>
+
+        <div class="footer">Scope Of Work</div>
+      </section>
+
+      <!-- TIMELINE -->
+
+      <section class="page proposed-page">
+        <div class="page-content">
+          <h2 class="section-title">الجدول الزمني</h2>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <h3>المرحلة الأولى</h3>
+
+              <p>المعاينة والتخطيط وتجهيز التصميمات.</p>
+            </div>
+
+            <div class="timeline-item">
+              <h3>المرحلة الثانية</h3>
+
+              <p>تنفيذ أعمال التشطيب والبنية التحتية.</p>
+            </div>
+
+            <div class="timeline-item">
+              <h3>المرحلة الثالثة</h3>
+
+              <p>تركيب الأنظمة والكاميرات والكاشير.</p>
+            </div>
+
+            <div class="timeline-item">
+              <h3>المرحلة الرابعة</h3>
+
+              <p>إطلاق الموقع والتسويق.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">Timeline</div>
+      </section>
+
+      <!-- PRICING -->
+
+      <section class="page proposed-page">
+        <div class="page-content">
+          <h2 class="section-title">التكلفة المالية</h2>
+
+          <table class="pricing-table">
+            <thead>
+              <tr>
+                <th>الخدمة</th>
+
+                <th>التكلفة</th>
+
+                <th>المدة</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>أعمال التشطيب</td>
+
+                <td>يتم التحديد بعد المعاينة</td>
+
+                <td>2 - 4 أسابيع</td>
+              </tr>
+
+              <tr>
+                <td>الأنظمة التقنية</td>
+
+                <td>حسب الأجهزة</td>
+
+                <td>3 - 7 أيام</td>
+              </tr>
+
+              <tr>
+                <td>الموقع الإلكتروني</td>
+
+                <td>[ السعر ]</td>
+
+                <td>7 - 14 يوم</td>
+              </tr>
+
+              <tr>
+                <td>إدارة السوشيال ميديا</td>
+
+                <td>[ السعر الشهري ]</td>
+
+                <td>شهري</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="footer">Pricing</div>
+      </section>
+
+      <!-- WHY US -->
+
+      <section class="page proposed-page">
+        <div class="page-content">
+          <h2 class="section-title">لماذا نحن؟</h2>
+
+          <div class="features-grid">
+            <div class="feature">تنفيذ متكامل</div>
+
+            <div class="feature">دعم فني حقيقي</div>
+
+            <div class="feature">سرعة في التنفيذ</div>
+
+            <div class="feature">حلول قابلة للتطوير</div>
+
+            <div class="feature">فريق متعدد التخصصات</div>
+
+            <div class="feature">توفير الوقت والمجهود</div>
+
+            <div class="feature">متابعة مستمرة</div>
+
+            <div class="feature">تصميمات عصرية</div>
+          </div>
+        </div>
+
+        <div class="footer">Why Choose Us</div>
+      </section>
+
+      <!-- TERMS -->
+
+      <section class="page proposed-page">
+        <div class="page-content">
+          <h2 class="section-title">الشروط والأحكام</h2>
+
+          <div class="terms">
+            <div class="term">يتم دفع 50% مقدم قبل بدء التنفيذ.</div>
+
+            <div class="term">يتم سداد باقي المبلغ عند التسليم.</div>
+
+            <div class="term">أي تعديلات إضافية يتم احتسابها بشكل منفصل.</div>
+
+            <div class="term">الاستضافة مجانية لأول سنة حسب الباقة.</div>
+
+            <div class="term">الدعم الفني يشمل الأعطال التقنية فقط.</div>
+          </div>
+        </div>
+
+        <div class="footer">Terms & Conditions</div>
+      </section>
+
+      <!-- NEXT STEPS -->
+
+      <section class="page proposed-page">
+        <div class="page-content">
+          <h2 class="section-title">الخطوات القادمة</h2>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <h3>1. الموافقة على العرض</h3>
+
+              <p>مراجعة واعتماد العرض.</p>
+            </div>
+
+            <div class="timeline-item">
+              <h3>2. دفع مقدم التعاقد</h3>
+
+              <p>بدء إجراءات التنفيذ.</p>
+            </div>
+
+            <div class="timeline-item">
+              <h3>3. بدء التنفيذ</h3>
+
+              <p>بدء المشروع حسب الجدول الزمني.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">Next Steps</div>
+      </section>
+
+      <!-- CONTACT -->
+
+      <section class="page proposed-page">
+        <div class="page-content">
+          <h2 class="section-title">تواصل معنا</h2>
+
+          <div class="contact-box">
+            <div class="contact-item">🌐 Website: yourwebsite.com</div>
+
+            <div class="contact-item">📱 WhatsApp: +20 XXX XXX XXXX</div>
+
+            <div class="contact-item">📧 Email: info@vsmartco.com</div>
+
+            <div class="contact-item">📷 Instagram: @vsmartsolutions</div>
+
+            <div class="contact-item">📘 Facebook: V Smart Solutions</div>
+          </div>
+        </div>
+
+        <div class="footer">V Smart Solutions © 2026</div>
+      </section>
+    </div>
+  </body>
+</html>
