@@ -761,15 +761,15 @@
             </div>
 
             <!-- Specs Grid -->
-            <div style="background: #fcfcfc; padding: 50px; border-radius: 20px; border: 1px solid #eee; margin-bottom: 60px;">
+            <div style="background: #fcfcfc; padding: 30px 20px; border-radius: 20px; border: 1px solid #eee; margin-bottom: 60px;">
                 <h3 style="font-size: 24px; color: var(--e-global-color-primary); margin-bottom: 30px; font-weight: 800;"><i class="fas fa-list-ul" style="margin-left: 10px; color: var(--e-global-color-accent);"></i> المواصفات الفنية</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 0 50px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
                     ${specsHtml}
                 </div>
             </div>
 
             <!-- Bottom: WhatsApp Order Form -->
-            <div style="background: #fff; padding: 50px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.06); max-width: 800px; margin: 0 auto; border-top: 5px solid #25D366; position: relative;">
+            <div style="background: #fff; padding: 40px 20px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.06); max-width: 800px; margin: 0 auto; border-top: 5px solid #25D366; position: relative;">
                 <div style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #fff; font-size: 30px; box-shadow: 0 5px 15px rgba(37,211,102,0.3);">
                     <i class="fab fa-whatsapp"></i>
                 </div>
@@ -780,28 +780,28 @@
                     <div style="display: flex; gap: 20px; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 250px;">
                             <label style="display: block; font-weight: bold; color: #444; margin-bottom: 8px;">الاسم الكامل *</label>
-                            <input type="text" id="wa-name" required placeholder="مثال: أحمد محمد" style="width: 100%; border: 1px solid #ddd; padding: 15px; border-radius: 8px; font-family: inherit; font-size: 15px; background: #fafafa;">
+                            <input type="text" id="wa-name" required placeholder="مثال: أحمد محمد" style="width: 100%; box-sizing: border-box; border: 1px solid #ddd; padding: 15px; border-radius: 8px; font-family: inherit; font-size: 15px; background: #fafafa;">
                         </div>
                         <div style="flex: 1; min-width: 250px;">
                             <label style="display: block; font-weight: bold; color: #444; margin-bottom: 8px;">رقم الهاتف *</label>
-                            <input type="tel" id="wa-phone" required placeholder="مثال: +201xxxxxxxxx" style="width: 100%; border: 1px solid #ddd; padding: 15px; border-radius: 8px; font-family: inherit; font-size: 15px; background: #fafafa;">
+                            <input type="tel" id="wa-phone" required placeholder="مثال: +201xxxxxxxxx" style="width: 100%; box-sizing: border-box; border: 1px solid #ddd; padding: 15px; border-radius: 8px; font-family: inherit; font-size: 15px; background: #fafafa;">
                         </div>
                     </div>
                     
                     <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 200px; max-width: 250px;">
+                        <div style="flex: 1; min-width: 250px;">
                             <label style="display: block; font-weight: bold; color: #444; margin-bottom: 8px;">الكمية *</label>
-                            <input type="number" id="wa-qty" min="1" value="1" required style="width: 100%; border: 1px solid #ddd; padding: 15px; border-radius: 8px; font-family: inherit; font-size: 15px; background: #fafafa;">
+                            <input type="number" id="wa-qty" min="1" value="1" required style="width: 100%; box-sizing: border-box; border: 1px solid #ddd; padding: 15px; border-radius: 8px; font-family: inherit; font-size: 15px; background: #fafafa;">
                         </div>
                         <div style="flex: 2; min-width: 250px;">
                             <label style="display: block; font-weight: bold; color: #444; margin-bottom: 8px;">عنوان الاستلام *</label>
-                            <input type="text" id="wa-address" required placeholder="المدينة، الشارع، المبنى..." style="width: 100%; border: 1px solid #ddd; padding: 15px; border-radius: 8px; font-family: inherit; font-size: 15px; background: #fafafa;">
+                            <input type="text" id="wa-address" required placeholder="المدينة، الشارع، المبنى..." style="width: 100%; box-sizing: border-box; border: 1px solid #ddd; padding: 15px; border-radius: 8px; font-family: inherit; font-size: 15px; background: #fafafa;">
                         </div>
                     </div>
                     
                     <div>
                         <label style="display: block; font-weight: bold; color: #444; margin-bottom: 8px;">ملاحظات إضافية (اختياري)</label>
-                        <textarea id="wa-notes" rows="3" placeholder="أي متطلبات أو توجيهات خاصة بالطلب..." style="width: 100%; border: 1px solid #ddd; padding: 15px; border-radius: 8px; font-family: inherit; font-size: 15px; resize: vertical; background: #fafafa;"></textarea>
+                        <textarea id="wa-notes" rows="3" placeholder="أي متطلبات أو توجيهات خاصة بالطلب..." style="width: 100%; box-sizing: border-box; border: 1px solid #ddd; padding: 15px; border-radius: 8px; font-family: inherit; font-size: 15px; resize: vertical; background: #fafafa;"></textarea>
                     </div>
 
                     <button type="submit" style="background: #25D366; color: #fff; border: none; padding: 20px; border-radius: 8px; font-size: 19px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(37,211,102,0.2);" onmouseover="this.style.background='#1da851'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='#25D366'; this.style.transform='translateY(0)';">
