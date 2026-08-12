@@ -3710,7 +3710,7 @@ aside.widget .calendar_wrap {
 }
 
 .our-faqs-bulitup {
-	transform: translate(-80%, -50%);
+	transform: translate(-80%, -5%);
 }
 
 .latest-blog-post .post-items .elementskit-post-image-card .elementskit-entry-header img {
@@ -3864,7 +3864,7 @@ aside.widget .calendar_wrap {
 @media only screen and (max-width: 767px) {
 
 	.our-faqs-bulitup {
-		transform: translate(-70%, -50%);
+		transform: translate(-65%, -20%);
 	}
 }
 
