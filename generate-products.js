@@ -1,6 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
+// ==========================================
+// CONFIGURATION
+// 'overwrite_all' : Deletes all old generated HTML pages and recreates them from scratch (Default).
+// 'skip_existing' : Only creates completely new HTML files if they don't already exist. Preserves old files.
+// ==========================================
+const GENERATION_MODE = 'overwrite_all';
+
 // 1. Load Products Data securely
 const jsCode = fs.readFileSync(path.join(__dirname, 'wp-content/themes/builtup/assets/js/products.js'), 'utf8');
 let vSmartProducts = [];
@@ -15,17 +22,19 @@ try {
 const baseEngTemplate = fs.readFileSync(path.join(__dirname, 'product-base.html'), 'utf8');
 const baseArTemplate = fs.readFileSync(path.join(__dirname, 'product-base-ar.html'), 'utf8');
 
-// 3. Clean up old generated product files to prevent dead files
-const allFiles = fs.readdirSync(__dirname);
-allFiles.forEach(file => {
-    if (file.startsWith('product-') && file.endsWith('.html')) {
-        const preserveFiles = ['product-01.html', 'product-01-ar.html', 'product-base.html', 'product-base-ar.html'];
-        if (!preserveFiles.includes(file)) {
-            fs.unlinkSync(path.join(__dirname, file));
-            console.log(`Deleted old file: ${file}`);
+// 3. Clean up old generated product files to prevent dead files (Only if overwriting)
+if (GENERATION_MODE === 'overwrite_all') {
+    const allFiles = fs.readdirSync(__dirname);
+    allFiles.forEach(file => {
+        if (file.startsWith('product-') && file.endsWith('.html')) {
+            const preserveFiles = ['product-01.html', 'product-01-ar.html', 'product-base.html', 'product-base-ar.html'];
+            if (!preserveFiles.includes(file)) {
+                fs.unlinkSync(path.join(__dirname, file));
+                console.log(`Deleted old file: ${file}`);
+            }
         }
-    }
-});
+    });
+}
 
 // 4. Generate Pages
 const SITE_URL = 'https://senioressam.github.io/BuiltUp';
@@ -38,6 +47,16 @@ const getCleanImgUrl = (pathStr) => {
 
 vSmartProducts.forEach(product => {
     const slug = product.id.toLowerCase();
+    const engFilePath = path.join(__dirname, `product-${slug}.html`);
+    const arFilePath = path.join(__dirname, `product-${slug}-ar.html`);
+
+    let skipEng = GENERATION_MODE === 'skip_existing' && fs.existsSync(engFilePath);
+    let skipAr = GENERATION_MODE === 'skip_existing' && fs.existsSync(arFilePath);
+
+    if (skipEng && skipAr) {
+        console.log(`Skipping already existing product: ${slug}`);
+        return; // move to next product
+    }
     
     // Process Images
     const mainImg = product.images.length ? product.images[0] : "";
@@ -76,6 +95,7 @@ vSmartProducts.forEach(product => {
     
     // SEO block Eng
     let seoEng = `
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${product.titleEng} | ${product.categoryEng} | V Smart Solutions</title>
     <meta name="description" content="${product.shortDescEng}" />
     <link rel="canonical" href="${urlEng}" />
@@ -122,6 +142,7 @@ vSmartProducts.forEach(product => {
     `).join('');
 
     let contentEng = `
+    <div class="e-con-inner" style="max-width: 1200px; margin: 0 auto; width: 100%; padding: 50px 20px; box-sizing: border-box;">
     <!-- Top Split Section -->
     <div style="display: flex; flex-wrap: wrap; gap: 50px; margin-bottom: 60px;">
         <!-- Left: Gallery -->
@@ -215,6 +236,7 @@ vSmartProducts.forEach(product => {
             </button>
         </form>
     </div>
+    </div>
     
     <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -251,7 +273,9 @@ vSmartProducts.forEach(product => {
     `;
     
     let finalEng = baseEngTemplate.replace('<!-- SEO_META_TAGS -->', seoEng).replace('<!-- PRODUCT_CONTENT -->', contentEng);
-    fs.writeFileSync(path.join(__dirname, `product-${slug}.html`), finalEng, 'utf8');
+    if (!skipEng) {
+        fs.writeFileSync(engFilePath, finalEng, 'utf8');
+    }
     
     // ==========================================
     // ARABIC PAGE
@@ -260,6 +284,7 @@ vSmartProducts.forEach(product => {
     
     // SEO block Ar
     let seoAr = `
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${product.titleAr} | ${product.categoryAr} | V Smart Solutions</title>
     <meta name="description" content="${product.shortDescAr}" />
     <link rel="canonical" href="${urlAr}" />
@@ -306,6 +331,7 @@ vSmartProducts.forEach(product => {
     `).join('');
 
     let contentAr = `
+    <div class="e-con-inner" style="max-width: 1200px; margin: 0 auto; width: 100%; padding: 50px 20px; box-sizing: border-box;">
     <!-- Top Split Section -->
     <div style="display: flex; flex-wrap: wrap; gap: 50px; margin-bottom: 60px;">
         <!-- Right (Visuals) -->
@@ -399,6 +425,7 @@ vSmartProducts.forEach(product => {
             </button>
         </form>
     </div>
+    </div>
     
     <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -435,7 +462,9 @@ vSmartProducts.forEach(product => {
     `;
 
     let finalAr = baseArTemplate.replace('<!-- SEO_META_TAGS -->', seoAr).replace('<!-- PRODUCT_CONTENT -->', contentAr);
-    fs.writeFileSync(path.join(__dirname, `product-${slug}-ar.html`), finalAr, 'utf8');
+    if (!skipAr) {
+        fs.writeFileSync(arFilePath, finalAr, 'utf8');
+    }
     
     console.log(`Generated ${slug}`);
 });
