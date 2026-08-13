@@ -135,9 +135,9 @@ vSmartProducts.forEach(product => {
     let badgeEngHtml = product.saleBadgeEng ? `<div style="display:inline-block; margin-bottom:15px; background:var(--e-global-color-accent); color:#fff; padding:6px 15px; border-radius:20px; font-weight:bold; font-size:14px;">${product.saleBadgeEng}</div>` : '';
     let oldPriceEngHtml = product.oldPrice ? `<span style="text-decoration:line-through; color:#999; font-size:18px; margin-left:15px;">$${product.oldPrice}</span>` : '';
     let specsEngHtml = product.specs.map(s => `
-        <div style="display: flex; border-bottom: 1px solid #eee; padding: 12px 0;">
-            <div style="width: 40%; font-weight: bold; color: #555;">${s.keyEng}</div>
-            <div style="width: 60%; color: #777;">${s.valEng}</div>
+        <div style="display: flex; gap: 15px; align-items: start; border-bottom: 1px solid #eee; padding: 12px 0;">
+            <div style="flex: 1; font-weight: bold; color: #555; min-width: 0; word-break: break-word;">${s.keyEng}</div>
+            <div style="flex: 1.5; color: #777; min-width: 0; word-break: break-word;">${s.valEng}</div>
         </div>
     `).join('');
 
@@ -190,7 +190,7 @@ vSmartProducts.forEach(product => {
     <!-- Specs Grid -->
     <div style="background: #fcfcfc; padding: 30px 20px; border-radius: 20px; border: 1px solid #eee; margin-bottom: 60px;">
         <h3 style="font-size: 24px; color: var(--e-global-color-primary); margin-bottom: 30px;"><i class="fas fa-list-ul" style="margin-right: 10px; color: var(--e-global-color-accent);"></i> Technical Specifications</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 0 30px;">
             ${specsEngHtml}
         </div>
     </div>
@@ -324,9 +324,9 @@ vSmartProducts.forEach(product => {
     let badgeArHtml = product.saleBadgeAr ? `<div style="display:inline-block; margin-bottom:15px; background:var(--e-global-color-accent); color:#fff; padding:6px 15px; border-radius:20px; font-weight:bold; font-size:14px;">${product.saleBadgeAr}</div>` : '';
     let oldPriceArHtml = product.oldPrice ? `<span style="text-decoration:line-through; color:#999; font-size:18px; margin-right:15px;">$${product.oldPrice}</span>` : '';
     let specsArHtml = product.specs.map(s => `
-        <div style="display: flex; border-bottom: 1px solid #eee; padding: 12px 0;">
-            <div style="width: 40%; font-weight: bold; color: #555;">${s.keyAr}</div>
-            <div style="width: 60%; color: #777;">${s.valAr}</div>
+        <div style="display: flex; gap: 15px; align-items: start; border-bottom: 1px solid #eee; padding: 12px 0;">
+            <div style="flex: 1; font-weight: bold; color: #555; min-width: 0; word-break: break-word;">${s.keyAr}</div>
+            <div style="flex: 1.5; color: #777; min-width: 0; word-break: break-word;">${s.valAr}</div>
         </div>
     `).join('');
 
@@ -379,7 +379,7 @@ vSmartProducts.forEach(product => {
     <!-- Specs Grid -->
     <div style="background: #fcfcfc; padding: 30px 20px; border-radius: 20px; border: 1px solid #eee; margin-bottom: 60px;">
         <h3 style="font-size: 24px; color: var(--e-global-color-primary); margin-bottom: 30px; font-weight: 800;"><i class="fas fa-list-ul" style="margin-left: 10px; color: var(--e-global-color-accent);"></i> المواصفات الفنية</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 0 30px;">
             ${specsArHtml}
         </div>
     </div>
