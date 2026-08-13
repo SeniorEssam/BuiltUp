@@ -11,13 +11,13 @@ const getSeoBlock = (title, desc, url, schemaType) => `
     <meta property="og:type" content="website" />
     <meta property="og:title" content="${title}" />
     <meta property="og:description" content="${desc}" />
-    <meta property="og:image" content="${SITE_URL}/wp-content/uploads/2024/06/vsmart-banner.jpg" />
+    <meta property="og:image" content="${SITE_URL}/wp-content/uploads/2024/06/hero-bg.jpg" />
     <meta property="og:url" content="${url}" />
     <meta property="og:site_name" content="V Smart Solutions" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${title}" />
     <meta name="twitter:description" content="${desc}" />
-    <meta name="twitter:image" content="${SITE_URL}/wp-content/uploads/2024/06/vsmart-banner.jpg" />
+    <meta name="twitter:image" content="${SITE_URL}/wp-content/uploads/2024/06/hero-bg.jpg" />
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
