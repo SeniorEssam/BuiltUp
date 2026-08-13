@@ -273,6 +273,7 @@ vSmartProducts.forEach(product => {
     `;
     
     let finalEng = baseEngTemplate.replace('<!-- SEO_META_TAGS -->', seoEng).replace('<!-- PRODUCT_CONTENT -->', contentEng);
+    finalEng = finalEng.replace(/\{\{ARABIC_LINK\}\}/g, `product-${slug}-ar.html`);
     if (!skipEng) {
         fs.writeFileSync(engFilePath, finalEng, 'utf8');
     }
@@ -462,6 +463,7 @@ vSmartProducts.forEach(product => {
     `;
 
     let finalAr = baseArTemplate.replace('<!-- SEO_META_TAGS -->', seoAr).replace('<!-- PRODUCT_CONTENT -->', contentAr);
+    finalAr = finalAr.replace(/\{\{ENGLISH_LINK\}\}/g, `product-${slug}.html`);
     if (!skipAr) {
         fs.writeFileSync(arFilePath, finalAr, 'utf8');
     }
