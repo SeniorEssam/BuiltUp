@@ -38,7 +38,7 @@ if (GENERATION_MODE === 'overwrite_all') {
 
 // 4. Generate Pages
 const SITE_URL = 'https://senioressam.github.io/BuiltUp';
-const PHONE_NUMBER = '+201018318181';
+const PHONE_NUMBER = '+201060388882';
 
 const getCleanImgUrl = (pathStr) => {
     // pathStr e.g. "../../BuiltUp/wp-content/..." -> "wp-content/..."
@@ -96,6 +96,7 @@ vSmartProducts.forEach(product => {
     // SEO block Eng
     let seoEng = `
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <title>${product.titleEng} | ${product.categoryEng} | V Smart Solutions</title>
     <meta name="description" content="${product.shortDescEng}" />
     <link rel="canonical" href="${urlEng}" />
@@ -286,6 +287,7 @@ vSmartProducts.forEach(product => {
     // SEO block Ar
     let seoAr = `
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <title>${product.titleAr} | ${product.categoryAr} | V Smart Solutions</title>
     <meta name="description" content="${product.shortDescAr}" />
     <link rel="canonical" href="${urlAr}" />
