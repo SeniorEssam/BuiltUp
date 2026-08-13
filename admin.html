@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V Smart Solutions - Products Admin Dashboard</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Vue 3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        body { background-color: #f4f6f9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .sidebar { height: calc(100vh - 60px); overflow-y: auto; background: #fff; border-right: 1px solid #e0e0e0; }
+        .product-item { cursor: pointer; padding: 15px; border-bottom: 1px solid #f0f0f0; transition: 0.2s; }
+        .product-item:hover { background: #f8f9fa; }
+        .product-item.active { background: #e9ecef; border-left: 4px solid #0d6efd; }
+        .main-panel { height: calc(100vh - 60px); overflow-y: auto; padding: 30px; }
+        .spec-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
+        .copy-btn { width: 100%; font-size: 1.2rem; font-weight: bold; padding: 15px; }
+    </style>
+</head>
+<body>
+
+<!-- Load Original Data -->
+<script src="wp-content/themes/builtup/assets/js/products.js"></script>
+
+<div id="app">
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1"><i class="fas fa-cogs me-2"></i> V Smart Products Admin</span>
+            <div>
+                <button class="btn btn-outline-light me-2" @click="addNewProduct"><i class="fas fa-plus"></i> Add New Product</button>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exportModal" @click="generateOutput"><i class="fas fa-file-export"></i> Export products.js</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 sidebar p-0">
+                <div class="p-3 border-bottom position-sticky top-0 bg-white" style="z-index: 10;">
+                    <input type="text" class="form-control" v-model="searchQuery" placeholder="Search products...">
+                </div>
+                <div v-for="(p, index) in filteredProducts" :key="p.id" 
+                     class="product-item" :class="{active: activeProduct && activeProduct.id === p.id}"
+                     @click="selectProduct(p)">
+                    <strong>{{p.titleEng}}</strong>
+                    <div class="text-muted small">{{p.id}} - {{p.categoryEng}}</div>
+                </div>
+                <div v-if="filteredProducts.length === 0" class="p-4 text-center text-muted">
+                    No products found.
+                </div>
+            </div>
+
+            <!-- Main Panel -->
+            <div class="col-md-9 main-panel" v-if="activeProduct">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0 text-primary"><i class="fas fa-box-open me-2"></i> Editing: {{activeProduct.id || 'New Product'}}</h4>
+                        <button class="btn btn-danger btn-sm" @click="deleteProduct"><i class="fas fa-trash"></i> Delete</button>
+                    </div>
+                    <div class="card-body">
+                        
+                        <!-- Basic Info -->
+                        <h5 class="text-secondary border-bottom pb-2 mb-3">Basic Information</h5>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-4">
+                                <label class="form-label">Product ID (Code)</label>
+                                <input type="text" class="form-control" v-model="activeProduct.id" placeholder="e.g. VS-LGT-001">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Price ($)</label>
+                                <input type="text" class="form-control" v-model="activeProduct.price">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Old Price ($) <small class="text-muted">Optional</small></label>
+                                <input type="text" class="form-control" v-model="activeProduct.oldPrice">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Rating (1 to 5)</label>
+                                <input type="number" step="0.1" max="5" min="1" class="form-control" v-model="activeProduct.rating">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Video Code (YouTube ID) <small class="text-muted">Optional</small></label>
+                                <input type="text" class="form-control" v-model="activeProduct.videoCode" placeholder="e.g. dQw4w9WgXcQ">
+                            </div>
+                        </div>
+
+                        <!-- English Details -->
+                        <h5 class="text-secondary border-bottom pb-2 mb-3">English Details</h5>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Title</label>
+                                <input type="text" class="form-control" v-model="activeProduct.titleEng">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Category</label>
+                                <input type="text" class="form-control" v-model="activeProduct.categoryEng">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Short Description</label>
+                                <input type="text" class="form-control" v-model="activeProduct.shortDescEng">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Long Description (Overview)</label>
+                                <textarea class="form-control" rows="3" v-model="activeProduct.longDescEng"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Sale Badge (e.g. SALE - 20%)</label>
+                                <input type="text" class="form-control" v-model="activeProduct.saleBadgeEng">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">PDF Catalog File Name</label>
+                                <input type="text" class="form-control" v-model="rawPdfEng" placeholder="e.g. catalog-en.pdf">
+                                <small class="text-muted d-block mt-1">Automatically resolves to: <span class="text-primary">../../BuiltUp/wp-content/uploads/product-images/{{activeProduct.id || 'PRODUCT_ID'}}/{{rawPdfEng || 'filename.pdf'}}</span></small>
+                            </div>
+                        </div>
+
+                        <!-- Arabic Details -->
+                        <h5 class="text-secondary border-bottom pb-2 mb-3" dir="rtl">التفاصيل بالعربية</h5>
+                        <div class="row g-3 mb-4" dir="rtl">
+                            <div class="col-md-6">
+                                <label class="form-label">اسم المنتج</label>
+                                <input type="text" class="form-control" v-model="activeProduct.titleAr">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">القسم</label>
+                                <input type="text" class="form-control" v-model="activeProduct.categoryAr">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">وصف قصير</label>
+                                <input type="text" class="form-control" v-model="activeProduct.shortDescAr">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">وصف طويل (نظرة عامة)</label>
+                                <textarea class="form-control" rows="3" v-model="activeProduct.longDescAr"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">شريط الخصم (مثل: خصم 20%)</label>
+                                <input type="text" class="form-control" v-model="activeProduct.saleBadgeAr">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">اسم ملف الـ PDF</label>
+                                <input type="text" class="form-control" v-model="rawPdfAr" placeholder="e.g. catalog-ar.pdf">
+                                <small class="text-muted d-block mt-1">Automatically resolves to: <span class="text-primary">../../BuiltUp/wp-content/uploads/product-images/{{activeProduct.id || 'PRODUCT_ID'}}/{{rawPdfAr || 'filename.pdf'}}</span></small>
+                            </div>
+                        </div>
+
+                        <!-- Images -->
+                        <h5 class="text-secondary border-bottom pb-2 mb-3"><i class="fas fa-images"></i> Product Images</h5>
+                        <div class="mb-4 bg-light p-3 rounded">
+                            <label class="form-label fw-bold">Image Filenames (Comma-separated or one per line)</label>
+                            <p class="text-muted small mb-2">Just paste the file names (e.g. <code>1.jpg, 2.png</code>). We will automatically build the folder path based on the Product ID: <code>../../BuiltUp/wp-content/uploads/product-images/{{activeProduct.id || 'PRODUCT_ID'}}/</code></p>
+                            <textarea class="form-control font-monospace" rows="4" v-model="rawImagesList"></textarea>
+                        </div>
+
+                        <!-- Technical Specs -->
+                        <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+                            <h5 class="text-secondary mb-0"><i class="fas fa-list"></i> Technical Specifications</h5>
+                            <button class="btn btn-sm btn-outline-primary" @click="addSpec"><i class="fas fa-plus"></i> Add Spec</button>
+                        </div>
+                        
+                        <div v-for="(spec, idx) in activeProduct.specs" :key="idx" class="spec-row bg-light p-2 rounded">
+                            <input type="text" class="form-control form-control-sm" placeholder="Key (Eng)" v-model="spec.keyEng">
+                            <input type="text" class="form-control form-control-sm" placeholder="Value (Eng)" v-model="spec.valEng">
+                            <input type="text" class="form-control form-control-sm" placeholder="Key (Ar)" v-model="spec.keyAr" dir="rtl">
+                            <input type="text" class="form-control form-control-sm" placeholder="Value (Ar)" v-model="spec.valAr" dir="rtl">
+                            <button class="btn btn-sm btn-outline-danger" title="Remove Spec" @click="removeSpec(idx)"><i class="fas fa-times"></i></button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-9 main-panel d-flex justify-content-center align-items-center text-muted" v-else>
+                <h3>Select a product from the menu or add a new one.</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div class="modal fade" id="exportModal" tabindex="-1">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title">Export products.js</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body bg-light">
+            <p>Copy the code below entirely, and paste it inside your <code>wp-content/themes/builtup/assets/js/products.js</code> file.</p>
+            <textarea class="form-control font-monospace" rows="15" readonly :value="outputJs"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success copy-btn" @click="copyToClipboard">
+                <i class="fas fa-copy me-2"></i> {{copied ? 'Copied to Clipboard!' : 'Copy Code'}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+const { createApp } = Vue;
+
+const IMAGE_BASE_PATH = '../../BuiltUp/wp-content/uploads/product-images/';
+const PDF_BASE_PATH = '../../BuiltUp/assets/pdf/';
+
+createApp({
+    data() {
+        // Load deep copy to avoid reference issues
+        let initialList = [];
+        if (typeof vSmartProducts !== 'undefined') {
+            initialList = JSON.parse(JSON.stringify(vSmartProducts));
+        }
+        
+        return {
+            products: initialList,
+            activeProduct: null,
+            searchQuery: '',
+            outputJs: '',
+            copied: false
+        }
+    },
+    computed: {
+        filteredProducts() {
+            if (!this.searchQuery) return this.products;
+            const q = this.searchQuery.toLowerCase();
+            return this.products.filter(p => 
+                p.titleEng.toLowerCase().includes(q) || 
+                p.titleAr.toLowerCase().includes(q) || 
+                p.id.toLowerCase().includes(q)
+            );
+        },
+        rawImagesList: {
+            get() {
+                if (!this.activeProduct || !this.activeProduct.images) return '';
+                return this.activeProduct.images.map(img => img.substring(img.lastIndexOf('/') + 1)).join('\n');
+            },
+            set(val) {
+                if (!this.activeProduct) return;
+                const lines = val.split(/[\n,]+/).map(l => l.trim()).filter(l => l);
+                this.activeProduct.images = lines.map(line => {
+                    if (line.includes('/')) return line;
+                    return IMAGE_BASE_PATH + (this.activeProduct.id || 'NEW') + '/' + line;
+                });
+            }
+        },
+        rawPdfEng: {
+            get() {
+                if (!this.activeProduct || !this.activeProduct.pdfCatalogEng) return '';
+                return this.activeProduct.pdfCatalogEng.substring(this.activeProduct.pdfCatalogEng.lastIndexOf('/') + 1);
+            },
+            set(val) {
+                if (!this.activeProduct) return;
+                if (val.includes('/')) this.activeProduct.pdfCatalogEng = val;
+                else this.activeProduct.pdfCatalogEng = IMAGE_BASE_PATH + (this.activeProduct.id || 'NEW') + '/' + val;
+            }
+        },
+        rawPdfAr: {
+            get() {
+                if (!this.activeProduct || !this.activeProduct.pdfCatalogAr) return '';
+                return this.activeProduct.pdfCatalogAr.substring(this.activeProduct.pdfCatalogAr.lastIndexOf('/') + 1);
+            },
+            set(val) {
+                if (!this.activeProduct) return;
+                if (val.includes('/')) this.activeProduct.pdfCatalogAr = val;
+                else this.activeProduct.pdfCatalogAr = IMAGE_BASE_PATH + (this.activeProduct.id || 'NEW') + '/' + val;
+            }
+        }
+    },
+    methods: {
+        selectProduct(p) {
+            this.activeProduct = p;
+        },
+        addNewProduct() {
+            const newProd = {
+                id: "VS-NEW-" + Math.floor(Math.random()*1000),
+                categoryEng: "", categoryAr: "",
+                titleEng: "New Product", titleAr: "منتج جديد",
+                shortDescEng: "", shortDescAr: "",
+                longDescEng: "", longDescAr: "",
+                price: "0.00", oldPrice: "", rating: 5,
+                saleBadgeEng: "", saleBadgeAr: "",
+                images: [], videoCode: "",
+                specs: [],
+                pdfCatalogAr: "", pdfCatalogEng: ""
+            };
+            this.products.unshift(newProd);
+            this.activeProduct = newProd;
+        },
+        deleteProduct() {
+            if (confirm("Are you sure you want to delete this product?")) {
+                this.products = this.products.filter(p => p.id !== this.activeProduct.id);
+                this.activeProduct = null;
+            }
+        },
+        addSpec() {
+            this.activeProduct.specs.push({keyEng:'', valEng:'', keyAr:'', valAr:''});
+        },
+        removeSpec(idx) {
+            this.activeProduct.specs.splice(idx, 1);
+        },
+        generateOutput() {
+            this.copied = false;
+            const finalData = JSON.parse(JSON.stringify(this.products));
+            this.outputJs = 'const vSmartProducts = ' + JSON.stringify(finalData, null, 4) + ';\n';
+        },
+        copyToClipboard() {
+            navigator.clipboard.writeText(this.outputJs).then(() => {
+                this.copied = true;
+                setTimeout(() => this.copied = false, 3000);
+            });
+        }
+    }
+}).mount('#app');
+</script>
+</body>
+</html>
