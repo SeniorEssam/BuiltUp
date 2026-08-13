@@ -38,14 +38,23 @@ const getSeoBlock = (title, desc, url, schemaType) => `
 function injectSEO(file, title, desc, url, schemaType) {
     let html = fs.readFileSync(file, 'utf8');
     
-    // Attempt to replace <title>...</title> block along with any old canonicals/OG metadata
-    // We will just do a simplistic clean insert. Let's find </head> and prepend.
-    // Wait, replacing <title> is safer to avoid duplicate titles.
+    // Strip duplicate old metadata
+    html = html.replace(/<meta\s+(property|name)=["'](og:[^"']+|twitter:[^"']+|description|keywords)["'][^>]*>/gi, '');
+    html = html.replace(/<link\s+rel=["']canonical["'][^>]*>/gi, '');
+
+    // The previous injection might have inserted our block already. Let's strip our block by finding the start and end of it.
+    // Actually, simply replacing <title> block with getSeoBlock is fine, but since we just stripped all descriptions and OGs from our PREVIOUS injection too!
+    // Yes! The regex above strips our injected tags as well. So now we just replace <title> with our new perfectly clean block.
+    
     if (html.includes('<title>')) {
         html = html.replace(/<title>.*?<\/title>/s, getSeoBlock(title, desc, url, schemaType));
     } else {
         html = html.replace('<head>', '<head>\n' + getSeoBlock(title, desc, url, schemaType));
     }
+    
+    // Clean up empty lines created by regex deletions
+    html = html.replace(/^\s*[\r\n]/gm, '');
+    
     fs.writeFileSync(file, html);
 }
 
