@@ -37,12 +37,12 @@ if (GENERATION_MODE === 'overwrite_all') {
 }
 
 // 4. Generate Pages
-const SITE_URL = 'https://senioressam.github.io/BuiltUp';
+const SITE_URL = 'https://vsmartso.com';
 const PHONE_NUMBER = '+201060388882';
 
 const getCleanImgUrl = (pathStr) => {
-    // pathStr e.g. "../../BuiltUp/wp-content/..." -> "wp-content/..."
-    return pathStr.replace('../../BuiltUp/', '');
+    // pathStr e.g. "../../wp-content/..." -> "wp-content/..."
+    return pathStr.replace('../../', '');
 };
 
 vSmartProducts.forEach(product => {
@@ -160,8 +160,8 @@ vSmartProducts.forEach(product => {
         <div style="flex: 1; min-width: 300px;">
             <!-- Breadcrumbs -->
             <p style="color: #999; font-size: 13px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">
-                <a href="../../BuiltUp/index.html" style="color:#999; text-decoration:none;">Home</a> / 
-                <a href="../../BuiltUp/products.html" style="color:#999; text-decoration:none;">Products</a> / 
+                <a href="../../index.html" style="color:#999; text-decoration:none;">Home</a> / 
+                <a href="../../products.html" style="color:#999; text-decoration:none;">Products</a> / 
                 <span style="color:var(--e-global-color-primary); font-weight:bold;">${product.categoryEng}</span>
             </p>
             
@@ -351,8 +351,8 @@ vSmartProducts.forEach(product => {
         <div style="flex: 1; min-width: 300px;">
             <!-- Breadcrumbs -->
             <p style="color: #999; font-size: 13px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">
-                <a href="../../BuiltUp/index-ar.html" style="color:#999; text-decoration:none;">الرئيسية</a> / 
-                <a href="../../BuiltUp/products-ar.html" style="color:#999; text-decoration:none;">المنتجات</a> / 
+                <a href="../../index-ar.html" style="color:#999; text-decoration:none;">الرئيسية</a> / 
+                <a href="../../products-ar.html" style="color:#999; text-decoration:none;">المنتجات</a> / 
                 <span style="color:var(--e-global-color-primary); font-weight:bold;">${product.categoryAr}</span>
             </p>
             

@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const SITE_URL = 'https://senioressam.github.io/BuiltUp';
+const SITE_URL = 'https://vsmartso.com';
 
 const getSeoBlock = (title, desc, url, schemaType, imagePath) => `
     <title>${title}</title>

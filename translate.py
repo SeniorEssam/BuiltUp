@@ -15,7 +15,7 @@ replacements = {
     r'>Contact us<': r'>اتصل بنا<',
     
     # Arabic / English button
-    r'"index-ar.html"\s+class="ekit-menu-nav-link"\s*style="font-weight:800;">عربي<': r'"../../BuiltUp/index.html" class="ekit-menu-nav-link" style="font-weight:800;">English<',
+    r'"index-ar.html"\s+class="ekit-menu-nav-link"\s*style="font-weight:800;">عربي<': r'"https://vsmartso.com/index.html" class="ekit-menu-nav-link" style="font-weight:800;">English<',
 
     # Hero
     r'Welcome to V Smart Solutions': r'مرحباً بكم في في سمارت سوليوشنز',

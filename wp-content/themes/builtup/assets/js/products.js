@@ -15,10 +15,10 @@ const vSmartProducts = [
         "saleBadgeEng": "SALE - 25%",
         "saleBadgeAr": "خصم 25%",
         "images": [
-            "../../BuiltUp/wp-content/uploads/product-images/VS-LGT-001/product-01-1.jpeg",
-            "../../BuiltUp/wp-content/uploads/product-images/VS-LGT-001/product-01-2.jpeg",
-            "../../BuiltUp/wp-content/uploads/product-images/VS-LGT-001/product-01-3.jpeg",
-            "../../BuiltUp/wp-content/uploads/product-images/VS-LGT-001/product-01-4.jpeg"
+            "https://vsmartso.com/wp-content/uploads/product-images/VS-LGT-001/product-01-1.jpeg",
+            "https://vsmartso.com/wp-content/uploads/product-images/VS-LGT-001/product-01-2.jpeg",
+            "https://vsmartso.com/wp-content/uploads/product-images/VS-LGT-001/product-01-3.jpeg",
+            "https://vsmartso.com/wp-content/uploads/product-images/VS-LGT-001/product-01-4.jpeg"
         ],
         "videoCode": "",
         "specs": [
@@ -41,8 +41,8 @@ const vSmartProducts = [
                 "valAr": "واي فاي وبلوتوث"
             }
         ],
-        "pdfCatalogAr": "../../BuiltUp/wp-content/uploads/product-images/VS-LGT-001/catalog-ar.pdf",
-        "pdfCatalogEng": "../../BuiltUp/wp-content/uploads/product-images/VS-LGT-001/catalog-en.pdf"
+        "pdfCatalogAr": "https://vsmartso.com/wp-content/uploads/product-images/VS-LGT-001/catalog-ar.pdf",
+        "pdfCatalogEng": "https://vsmartso.com/wp-content/uploads/product-images/VS-LGT-001/catalog-en.pdf"
     },
     {
         "id": "VS-FURN-002",
@@ -60,10 +60,10 @@ const vSmartProducts = [
         "saleBadgeEng": "NEW",
         "saleBadgeAr": "جديد",
         "images": [
-            "../../BuiltUp/wp-content/uploads/product-images/VS-FURN-002/product-02-1.jpg",
-            "../../BuiltUp/wp-content/uploads/product-images/VS-FURN-002/product-02-2.jpg",
-            "../../BuiltUp/wp-content/uploads/product-images/VS-FURN-002/product-02-3.jpg",
-            "../../BuiltUp/wp-content/uploads/product-images/VS-FURN-002/product-02-4.jpg"
+            "https://vsmartso.com/wp-content/uploads/product-images/VS-FURN-002/product-02-1.jpg",
+            "https://vsmartso.com/wp-content/uploads/product-images/VS-FURN-002/product-02-2.jpg",
+            "https://vsmartso.com/wp-content/uploads/product-images/VS-FURN-002/product-02-3.jpg",
+            "https://vsmartso.com/wp-content/uploads/product-images/VS-FURN-002/product-02-4.jpg"
         ],
         "videoCode": "",
         "specs": [
@@ -86,8 +86,8 @@ const vSmartProducts = [
                 "valAr": "125 كجم"
             }
         ],
-        "pdfCatalogAr": "../../BuiltUp/wp-content/uploads/product-images/VS-FURN-002/catalog-ar.pdf",
-        "pdfCatalogEng": "../../BuiltUp/wp-content/uploads/product-images/VS-FURN-002/catalog-en.pdf"
+        "pdfCatalogAr": "https://vsmartso.com/wp-content/uploads/product-images/VS-FURN-002/catalog-ar.pdf",
+        "pdfCatalogEng": "https://vsmartso.com/wp-content/uploads/product-images/VS-FURN-002/catalog-en.pdf"
     },
     {
         "id": "VS-CCTV-003",
@@ -105,10 +105,10 @@ const vSmartProducts = [
         "saleBadgeEng": "SALE - $50 OFF",
         "saleBadgeAr": "وفر 50 دولار",
         "images": [
-            "../../BuiltUp/wp-content/uploads/product-images/VS-CCTV-003/product-03-1.jpg",
-            "../../BuiltUp/wp-content/uploads/product-images/VS-CCTV-003/product-03-2.jpg",
-            "../../BuiltUp/wp-content/uploads/product-images/VS-CCTV-003/product-03-3.jpg",
-            "../../BuiltUp/wp-content/uploads/product-images/VS-CCTV-003/product-03-4.jpg"
+            "https://vsmartso.com/wp-content/uploads/product-images/VS-CCTV-003/product-03-1.jpg",
+            "https://vsmartso.com/wp-content/uploads/product-images/VS-CCTV-003/product-03-2.jpg",
+            "https://vsmartso.com/wp-content/uploads/product-images/VS-CCTV-003/product-03-3.jpg",
+            "https://vsmartso.com/wp-content/uploads/product-images/VS-CCTV-003/product-03-4.jpg"
         ],
         "videoCode": "",
         "specs": [
@@ -131,7 +131,7 @@ const vSmartProducts = [
                 "valAr": "IP67"
             }
         ],
-        "pdfCatalogAr": "../../BuiltUp/wp-content/uploads/product-images/VS-CCTV-003/catalog-ar.pdf",
-        "pdfCatalogEng": "../../BuiltUp/wp-content/uploads/product-images/VS-CCTV-003/catalog-en.pdf"
+        "pdfCatalogAr": "https://vsmartso.com/wp-content/uploads/product-images/VS-CCTV-003/catalog-ar.pdf",
+        "pdfCatalogEng": "https://vsmartso.com/wp-content/uploads/product-images/VS-CCTV-003/catalog-en.pdf"
     }
 ];
